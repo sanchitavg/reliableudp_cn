@@ -9,28 +9,28 @@ This project builds a custom reliability layer to ensure correct and complete fi
 
 ## Features
 
-* Chunk-Based Transfer – File split into 1024-byte chunks
-* Resume Support – Continues from last received chunk using `progress.txt`
-* Integrity Check – SHA-256 hash verifies file correctness
-* Efficient Transfer – Selective Repeat with sliding window
+* Chunk-Based Transfer – File split into 1024-byte chunks -- sanchita
+* Resume Support – Continues from last received chunk using `progress.txt` -- sanchita
+* Integrity Check – SHA-256 hash verifies file correctness -- shreyas
+* Efficient Transfer – Selective Repeat with sliding window -- shreya
 
 ## Project Structure
 
-```
+
 RELIABLEUDP/
 ├── client.py
 ├── server.py
 ├── file.txt
 ├── received_file.txt
 ├── progress.txt
-```
+
 
 ## How to Run
 
-```bash
+
 python3 server.py
 python3 client.py
-```
+
 
 ## Concepts Used
 
