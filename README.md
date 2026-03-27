@@ -18,11 +18,11 @@ This project builds a custom reliability layer to ensure correct and complete fi
 
 
 RELIABLEUDP/
-├── client.py
-├── server.py
-├── file.txt
-├── received_file.txt
-├── progress.txt
+client.py
+server.py
+file.txt
+received_file.txt
+progress.txt
 
 
 ## How to Run
