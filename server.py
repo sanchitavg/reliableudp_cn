@@ -10,7 +10,7 @@ server.bind((SERVER_IP, PORT))
 
 print("Server started...")
 
-#LOAD LAST PROGRESS
+# loads last progress
 last_chunk = -1
 if os.path.exists("progress.txt"):
     with open("progress.txt", "r") as f:
@@ -18,13 +18,13 @@ if os.path.exists("progress.txt"):
         if content:
             last_chunk = int(content)
 
-# IMPORTANT: use append mode for resume
+# use append mode for resume
 file = open("received_file.txt", "ab")
 
 while True:
     packet, addr = server.recvfrom(CHUNK_SIZE + 10)
 
-    # HANDLE RESUME REQUEST
+    # handle resume request
     if packet == b"RESUME":
         server.sendto(str(last_chunk).encode(), addr)
         continue
@@ -38,7 +38,7 @@ while True:
 
     file.write(chunk)
 
-    #SAVE PROGRESS
+    # update progress
     last_chunk = seq
     with open("progress.txt", "w") as f:
         f.write(str(last_chunk))

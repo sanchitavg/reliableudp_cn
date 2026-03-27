@@ -5,9 +5,10 @@ SERVER_IP = "127.0.0.1"
 PORT = 15000
 CHUNK_SIZE = 1024
 
+#creatng client UDP socket
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# ASK SERVER WHERE TO RESUME
+# resume req : asks server for last received chunk
 client.sendto(b"RESUME", (SERVER_IP, PORT))
 last_chunk, _ = client.recvfrom(1024)
 
@@ -17,11 +18,12 @@ try:
 except:
     start_chunk = 0
 
+# displays where transfer resumes from
 print("Resuming from chunk", start_chunk)
 
 file = open("file.txt", "rb")
 
-#SKIP ALREADY SENT DATA
+# skips previously sent data
 file.seek(start_chunk * CHUNK_SIZE)
 
 seq = start_chunk  # start from correct chunk
@@ -32,7 +34,7 @@ while True:
     if not chunk:
         break
 
-    # add sequence number (6 digits)
+    # add 6 digit sequence number 
     packet = f"{seq:06}".encode() + chunk
 
     client.sendto(packet, (SERVER_IP, PORT))
